@@ -19,9 +19,22 @@ public class Rivista extends Catalogo{
         return this.isbn;
     }
 
+    public String getTitolo() {
+        return this.titolo;
+    }
+
+    public long getNumeroPagine() {
+        return this.numeroPagine;
+    }
+
     public int getAnno() {
         return this.annoPubblicazione;
     }
+
+    public Periodicity getPeriodicity() {
+        return periodicity;
+    }
+
     @Override
     public String toString() {
         return "Rivista{" +

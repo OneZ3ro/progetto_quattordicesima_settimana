@@ -5,8 +5,12 @@ import angelomoreno.entities.Libro;
 import angelomoreno.entities.Periodicity;
 import angelomoreno.entities.Rivista;
 import com.github.javafaker.Faker;
+import org.apache.commons.io.FileUtils;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -31,8 +35,7 @@ public class Application {
                 System.out.println("[7]: Cerca un libro per anno di pubblicazione");
                 System.out.println("[8]: Cerca una rivista per anno di pubblicazione");
                 System.out.println("[9]: Cerca un libro per autore");
-                System.out.println("[10]: Cerca una rivista per autore");
-                System.out.println("[11]: Salva sul disco l'archivio");
+                System.out.println("[10]: Salva sul disco l'archivio");
                 System.out.println("[0]: Termina programma");
 
                 int choose1 = Integer.parseInt(input.nextLine());
@@ -137,10 +140,12 @@ public class Application {
                         archivio1.getLibri().stream().filter(libro1 -> libro1.getAutore().equals(searchLibroAutore)).collect(Collectors.groupingBy(libro1 -> libro1.getAutore())).forEach(((autore, libros) -> System.out.println("I libri che corrispondono all'autore "+ autore + " sono: " + libros)));
                         break;
                     case 10:
-                        System.out.println("\nHai scelto 10!!");
-                        break;
-                    case 11:
-                        System.out.println("\nHai scelto 11!!");
+                        try {
+                            creaFile(archivio1);
+                        } catch (IOException ioException) {
+                            ioException.getMessage();
+                        }
+
                         break;
                     default:
                         System.err.println("Non hai scelto una delle possibili scelte. Riprova");
@@ -189,5 +194,22 @@ public class Application {
             riviste.add(supplierRivista.get());
         }
         return riviste;
+    }
+
+    public static void creaFile(Archivio archivio) throws IOException {
+        File file = new File("src/output.txt");
+        FileUtils.writeStringToFile(file, "", StandardCharsets.UTF_8);
+        List<Libro> appLibri = new ArrayList<>(archivio.getLibri());
+        List<Rivista> appRivista = new ArrayList<>(archivio.getRiviste());
+        for (int i = 0; i < appLibri.size(); i++) {
+            FileUtils.writeStringToFile(file, appLibri.get(i).getIsbn().toString() + "@" + appLibri.get(i).getTitolo() + "@" + appLibri.get(i).getAnno() + "@" + appLibri.get(i).getNumeroPagine() + "@" + appLibri.get(i).getAutore() + "@" + appLibri.get(i).getGenere() + "#" + System.lineSeparator(), StandardCharsets.UTF_8, true);
+        }
+        FileUtils.writeStringToFile(file, "," + System.lineSeparator(), StandardCharsets.UTF_8, true);
+        for (int i = 0; i < appRivista.size(); i++) {
+            FileUtils.writeStringToFile(file, appRivista.get(i).getIsbn().toString() + "@" + appRivista.get(i).getTitolo() + "@" + appRivista.get(i).getAnno() + "@" + appRivista.get(i).getNumeroPagine() + "@" + appRivista.get(i).getPeriodicity() + "#" + System.lineSeparator(), StandardCharsets.UTF_8, true);
+        }
+        String contenuto = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+        System.out.println("Hai creato con successo il file contenente l'archivio.\nContenuto del file:");
+        System.out.println(contenuto);
     }
 }

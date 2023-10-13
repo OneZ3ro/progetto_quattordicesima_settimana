@@ -21,6 +21,14 @@ public class Libro extends Catalogo{
         return this.isbn;
     }
 
+    public String getTitolo() {
+        return this.titolo;
+    }
+
+    public long getNumeroPagine() {
+        return this.numeroPagine;
+    }
+
     public int getAnno() {
         return this.annoPubblicazione;
     }
