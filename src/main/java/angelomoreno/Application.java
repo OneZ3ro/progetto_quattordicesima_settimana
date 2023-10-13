@@ -117,7 +117,9 @@ public class Application {
                         archivio1.getLibri().stream().filter(libro1 -> libro1.getIsbn().equals(searchLibroIsbn)).collect(Collectors.groupingBy(libro1 -> libro1.getIsbn())).forEach(((ISBNs, libros) -> System.out.println("I libri che corrispondono all'ISBN "+ ISBNs + " sono: " + libros)));
                         break;
                     case 6:
-                        System.out.println("\nHai scelto 6!!");
+                        System.out.println("\nInserisci l'ISBN della rivista che vuoi cercare");
+                        BigInteger searchRivistaIsbn = new BigInteger(input.nextLine());
+                        archivio1.getRiviste().stream().filter(rivista1 -> rivista1.getIsbn().equals(searchRivistaIsbn)).collect(Collectors.groupingBy(rivista1 -> rivista1.getIsbn())).forEach(((ISBNs, rivistas) -> System.out.println("Le riviste che corrispondono all'ISBN "+ ISBNs + " sono: " + rivistas)));
                         break;
                     case 7:
                         System.out.println("\nHai scelto 7!!");
