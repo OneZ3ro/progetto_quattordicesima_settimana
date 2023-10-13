@@ -56,7 +56,29 @@ public class Application {
                         System.out.println("Hai aggiunto il tuo libro con successo!!\n");
                         break;
                     case 2:
-                        System.out.println("\nHai scelto 2!!");
+                        System.out.println("\nCome si chiama il tuo libro?");
+                        String rivistaNome = input.nextLine();
+                        System.out.println("In che hanno è stato pubblicato? (Inserisci solo l'anno)");
+                        int rivistaAnnoPubblicazione = Integer.parseInt(input.nextLine());
+                        System.out.println("Quante pagine ha il tuo rivista?");
+                        long rivistaPagine = Long.parseLong(input.nextLine());
+                        System.out.println("Inserisci l'ISBN del rivista");
+                        BigInteger rivistaIsbn = new BigInteger(input.nextLine());
+                        System.out.println("Ogni quanto è pubblicato? (Scegli un numero)");
+                        System.out.println("[1]: SETTIMANALMENTE  -  [2]: MENSILMENTE  -  [3]: SEMESTRALMENTE");
+                        int choosePeriodicity = Integer.parseInt(input.nextLine());
+                        switch (choosePeriodicity) {
+                            case 1:
+                                archivio1.getRiviste().add(new Rivista(rivistaNome, rivistaAnnoPubblicazione, rivistaPagine, Periodicity.SETTIMANALE, rivistaIsbn));
+                                break;
+                            case 2:
+                                archivio1.getRiviste().add(new Rivista(rivistaNome, rivistaAnnoPubblicazione, rivistaPagine, Periodicity.MENSILE, rivistaIsbn));
+                                break;
+                            case 3:
+                                archivio1.getRiviste().add(new Rivista(rivistaNome, rivistaAnnoPubblicazione, rivistaPagine, Periodicity.SEMESTRALE, rivistaIsbn));
+                                break;
+                        }
+                        System.out.println("Hai aggiunto il tuo rivista con successo!!\n");
                         break;
                     case 3:
                         System.out.println("\nHai scelto 3!!");
@@ -86,6 +108,8 @@ public class Application {
             }
         } catch (NumberFormatException numberFormatException) {
             System.err.println("Errore: probabilmente hai inserito una stringa (parola) invece che un intero (numero). Riprova");
+        } catch (Exception ex) {
+            ex.getMessage();
         } finally {
             input.close();
         }
