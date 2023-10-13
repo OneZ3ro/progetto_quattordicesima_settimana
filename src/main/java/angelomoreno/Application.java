@@ -8,7 +8,9 @@ import com.github.javafaker.Faker;
 
 import java.math.BigInteger;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class Application {
 
@@ -81,12 +83,36 @@ public class Application {
                         System.out.println("Hai aggiunto il tuo rivista con successo!!\n");
                         break;
                     case 3:
-                        System.out.println("\nHai scelto 3!!");
+                        System.out.println("\nInserisci l'ISBN del libro che vuoi eliminare");
+                        BigInteger removeLibroIsbn = new BigInteger(input.nextLine());
+                        Map<BigInteger, List<Libro>> mapLibriToRemove = new HashMap<>(archivio1.getLibri().stream().filter(libro1 -> libro1.getIsbn().equals(removeLibroIsbn)).collect(Collectors.groupingBy(libro1 -> libro1.getIsbn())));
+                        mapLibriToRemove.forEach(((isbns, libros) -> System.out.println("I libri/o che corrispondo con l'ISBN " + removeLibroIsbn + " sono/è: " + libros)));
+                        System.out.println("Sei sicuro di voler eliminare questi/o libri/o?");
+                        System.out.println("[1]: Si  -  [2]: No");
+                        int confirmToRemoveLibri = Integer.parseInt(input.nextLine());
+                        if (confirmToRemoveLibri == 1) {
+//                            Iterator<List<Libro>> iter = mapLibriToRemove.values().iterator();
+//                            int counter = 0;
+//                            while (iter.hasNext()) {
+//                                Libro current = iter.next().get(counter);
+//                                if(current.getIsbn().equals(removeLibroIsbn)) {
+//                                    iter.remove();
+//                                }
+//                                counter++;
+//                            }
+                            System.out.println("entrato");
+                            mapLibriToRemove.remove(removeLibroIsbn);
+                        } else {
+                            System.out.println("Operazione annullata");
+                        }
+                        System.out.println("Rimossi/o libri/o!!");
+                        mapLibriToRemove.forEach(((isbns, libros) -> System.out.println("Ora i libri/o che corrispondo con l'ISBN " + removeLibroIsbn + " sono/è: " + libros)));
                         break;
                     case 4:
                         System.out.println("\nHai scelto 4!!");
                         break;
                     case 5:
+                        //archivio1.getLibri().stream().filter(libro1 -> libro1.getIsbn().equals(removeLibroIsbn)).collect(Collectors.groupingBy(libro1 -> libro1.getIsbn())).forEach(((ISBNs, libros) -> System.out.println("I libri che corrispondono all'ISBN "+ ISBNs + " sono: " + libros)));
                         System.out.println("\nHai scelto 5!!");
                         break;
                     case 6:

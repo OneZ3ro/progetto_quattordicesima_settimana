@@ -17,10 +17,22 @@ public class Libro extends Catalogo{
         this.isbn = isbn;
     }
 
+    public BigInteger getIsbn() {
+        return this.isbn;
+    }
+
+    public String getAutore() {
+        return autore;
+    }
+
+    public String getGenere() {
+        return genere;
+    }
+
     @Override
     public String toString() {
         return "Libro{" +
-                ", isbn=" + isbn +
+                "isbn=" + isbn +
                 ", titolo='" + titolo + '\'' +
                 ", annoPubblicazione=" + annoPubblicazione +
                 ", numeroPagine=" + numeroPagine +
