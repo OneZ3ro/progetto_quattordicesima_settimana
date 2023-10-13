@@ -20,7 +20,7 @@ public class Application {
         List<Rivista> suppRiviste = new ArrayList<>(createListRiviste());
         List<Catalogo> catalogos = new ArrayList<>();
         catalogos.addAll(suppLibri);
-        catalogos.addAll((suppRiviste));
+        catalogos.addAll(suppRiviste);
 
         Scanner input = new Scanner(System.in);
         try {
@@ -98,13 +98,13 @@ public class Application {
                         break;
                     case 4:
                         System.out.println("\nInserisci l'ISBN del libro o rivista che vuoi cercare");
-                        BigInteger searchLibroIsbn = new BigInteger(input.nextLine());
-                        catalogos.stream().filter(libro1 -> libro1.getIsbn().equals(searchLibroIsbn)).collect(Collectors.groupingBy(libro1 -> libro1.getIsbn())).forEach(((isbns, libros) -> System.out.println("I libri o riviste che corrispondono all'ISBN "+ isbns + " sono: " + libros)));
+                        BigInteger searchLibroRivistaIsbn = new BigInteger(input.nextLine());
+                        catalogos.stream().filter(libro1 -> libro1.getIsbn().equals(searchLibroRivistaIsbn)).collect(Collectors.groupingBy(libro1 -> libro1.getIsbn())).forEach(((isbns, libros) -> System.out.println("I libri o riviste che corrispondono all'ISBN "+ isbns + " sono: " + libros)));
                         break;
                     case 5:
                         System.out.println("\nInserisci l'anno del libro o rivista che vuoi cercare");
-                        int searchLibroAnno = Integer.parseInt(input.nextLine());
-                        catalogos.stream().filter(libro1 -> libro1.getAnnoPubblicazione() == searchLibroAnno).collect(Collectors.groupingBy(libro1 -> libro1.getAnnoPubblicazione())).forEach(((anno, libros) -> System.out.println("I libri o riviste che corrispondono all'anno "+ anno + " sono: " + libros)));
+                        int searchLibroRivistaAnno = Integer.parseInt(input.nextLine());
+                        catalogos.stream().filter(libro1 -> libro1.getAnnoPubblicazione() == searchLibroRivistaAnno).collect(Collectors.groupingBy(libro1 -> libro1.getAnnoPubblicazione())).forEach(((anno, libros) -> System.out.println("I libri o riviste che corrispondono all'anno "+ anno + " sono: " + libros)));
                         break;
                     case 6:
                         System.out.println("\nInserisci l'autore del libro che vuoi cercare");
