@@ -14,15 +14,14 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class Application {
-
     public static void main(String[] args) {
         List<Libro> suppLibri = new ArrayList<>(createListLibri());
         List<Rivista> suppRiviste = new ArrayList<>(createListRiviste());
         List<Catalogo> catalogos = new ArrayList<>();
         catalogos.addAll(suppLibri);
         catalogos.addAll(suppRiviste);
-
         Scanner input = new Scanner(System.in);
+
         try {
             System.out.println("Benvenuto alla biblioteca!");
             myLoop:
@@ -64,9 +63,9 @@ public class Application {
                         String rivistaNome = input.nextLine();
                         System.out.println("In che hanno è stato pubblicato? (Inserisci solo l'anno)");
                         int rivistaAnnoPubblicazione = Integer.parseInt(input.nextLine());
-                        System.out.println("Quante pagine ha il tuo rivista?");
+                        System.out.println("Quante pagine ha la tua rivista?");
                         long rivistaPagine = Long.parseLong(input.nextLine());
-                        System.out.println("Inserisci l'ISBN del rivista");
+                        System.out.println("Inserisci l'ISBN della rivista");
                         BigInteger rivistaIsbn = new BigInteger(input.nextLine());
                         System.out.println("Ogni quanto è pubblicato? (Scegli un numero)");
                         System.out.println("[1]: SETTIMANALMENTE  -  [2]: MENSILMENTE  -  [3]: SEMESTRALMENTE");
@@ -82,10 +81,10 @@ public class Application {
                                 catalogos.add(new Rivista(rivistaNome, rivistaAnnoPubblicazione, rivistaPagine, Periodicity.SEMESTRALE, rivistaIsbn));
                                 break;
                         }
-                        System.out.println("Hai aggiunto il tuo rivista con successo!!\n");
+                        System.out.println("Hai aggiunto la tua rivista con successo!!\n");
                         break;
                     case 3:
-                        System.out.println("Inserisci l'ISBN del libro che vuoi eliminare");
+                        System.out.println("Inserisci l'ISBN del libro o rivista che vuoi eliminare");
                         BigInteger removeLibroIsbn = new BigInteger(input.nextLine());
                         Iterator<Catalogo> iter = catalogos.iterator();
                         while(iter.hasNext()){
@@ -123,7 +122,6 @@ public class Application {
                         } catch (IOException ioException) {
                             ioException.getMessage();
                         }
-
                         break;
                     default:
                         System.err.println("Non hai scelto una delle possibili scelte. Riprova");
@@ -138,7 +136,6 @@ public class Application {
             input.close();
         }
     }
-
     public static List<Libro> createListLibri() {
         List<Libro> libri = new ArrayList<>();
         Supplier<Libro> supplierLibro = () -> {
@@ -152,7 +149,6 @@ public class Application {
         }
         return libri;
     }
-
     public static List<Rivista> createListRiviste() {
         List<Rivista> riviste = new ArrayList<>();
         Supplier<Rivista> supplierRivista = () -> {
@@ -173,7 +169,6 @@ public class Application {
         }
         return riviste;
     }
-
     public static void creaFile(List<Catalogo> catalogos) throws IOException {
         File file = new File("src/output.txt");
         FileUtils.writeStringToFile(file, "", StandardCharsets.UTF_8);
@@ -197,6 +192,4 @@ public class Application {
         System.out.println("Hai creato con successo il file contenente l'archivio.\nContenuto del file:");
         System.out.println(contenuto);
     }
-
-
 }
