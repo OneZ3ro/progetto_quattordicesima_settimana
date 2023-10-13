@@ -112,8 +112,9 @@ public class Application {
                         System.out.println("\nHai scelto 4!!");
                         break;
                     case 5:
-                        //archivio1.getLibri().stream().filter(libro1 -> libro1.getIsbn().equals(removeLibroIsbn)).collect(Collectors.groupingBy(libro1 -> libro1.getIsbn())).forEach(((ISBNs, libros) -> System.out.println("I libri che corrispondono all'ISBN "+ ISBNs + " sono: " + libros)));
-                        System.out.println("\nHai scelto 5!!");
+                        System.out.println("\nInserisci l'ISBN del libro che vuoi cercare");
+                        BigInteger searchLibroIsbn = new BigInteger(input.nextLine());
+                        archivio1.getLibri().stream().filter(libro1 -> libro1.getIsbn().equals(searchLibroIsbn)).collect(Collectors.groupingBy(libro1 -> libro1.getIsbn())).forEach(((ISBNs, libros) -> System.out.println("I libri che corrispondono all'ISBN "+ ISBNs + " sono: " + libros)));
                         break;
                     case 6:
                         System.out.println("\nHai scelto 6!!");
