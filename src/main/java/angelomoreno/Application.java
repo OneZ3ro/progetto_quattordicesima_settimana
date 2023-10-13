@@ -30,9 +30,9 @@ public class Application {
                 System.out.println("[6]: Cerca una rivista per ISBN");
                 System.out.println("[7]: Cerca un libro per anno di pubblicazione");
                 System.out.println("[8]: Cerca una rivista per anno di pubblicazione");
-                System.out.println("[7]: Cerca un libro per autore");
-                System.out.println("[8]: Cerca una rivista per autore");
-                System.out.println("[9]: Salva sul disco l'archivio");
+                System.out.println("[9]: Cerca un libro per autore");
+                System.out.println("[10]: Cerca una rivista per autore");
+                System.out.println("[11]: Salva sul disco l'archivio");
                 System.out.println("[0]: Termina programma");
 
                 int choose1 = Integer.parseInt(input.nextLine());
@@ -114,21 +114,28 @@ public class Application {
                     case 5:
                         System.out.println("\nInserisci l'ISBN del libro che vuoi cercare");
                         BigInteger searchLibroIsbn = new BigInteger(input.nextLine());
-                        archivio1.getLibri().stream().filter(libro1 -> libro1.getIsbn().equals(searchLibroIsbn)).collect(Collectors.groupingBy(libro1 -> libro1.getIsbn())).forEach(((ISBNs, libros) -> System.out.println("I libri che corrispondono all'ISBN "+ ISBNs + " sono: " + libros)));
+                        archivio1.getLibri().stream().filter(libro1 -> libro1.getIsbn().equals(searchLibroIsbn)).collect(Collectors.groupingBy(libro1 -> libro1.getIsbn())).forEach(((isbns, libros) -> System.out.println("I libri che corrispondono all'ISBN "+ isbns + " sono: " + libros)));
                         break;
                     case 6:
                         System.out.println("\nInserisci l'ISBN della rivista che vuoi cercare");
                         BigInteger searchRivistaIsbn = new BigInteger(input.nextLine());
-                        archivio1.getRiviste().stream().filter(rivista1 -> rivista1.getIsbn().equals(searchRivistaIsbn)).collect(Collectors.groupingBy(rivista1 -> rivista1.getIsbn())).forEach(((ISBNs, rivistas) -> System.out.println("Le riviste che corrispondono all'ISBN "+ ISBNs + " sono: " + rivistas)));
+                        archivio1.getRiviste().stream().filter(rivista1 -> rivista1.getIsbn().equals(searchRivistaIsbn)).collect(Collectors.groupingBy(rivista1 -> rivista1.getIsbn())).forEach(((isbns, rivistas) -> System.out.println("Le riviste che corrispondono all'ISBN "+ isbns + " sono: " + rivistas)));
                         break;
                     case 7:
-                        System.out.println("\nHai scelto 7!!");
+                        System.out.println("\nInserisci l'anno del libro che vuoi cercare");
+                        int searchLibroAnno = Integer.parseInt(input.nextLine());
+                        archivio1.getLibri().stream().filter(libro1 -> libro1.getAnno() == searchLibroAnno).collect(Collectors.groupingBy(libro1 -> libro1.getAnno())).forEach(((anno, libros) -> System.out.println("I libri che corrispondono all'anno "+ anno + " sono: " + libros)));
                         break;
                     case 8:
-                        System.out.println("\nHai scelto 8!!");
                         break;
                     case 9:
                         System.out.println("\nHai scelto 9!!");
+                        break;
+                    case 10:
+                        System.out.println("\nHai scelto 10!!");
+                        break;
+                    case 11:
+                        System.out.println("\nHai scelto 11!!");
                         break;
                     default:
                         System.err.println("Non hai scelto una delle possibili scelte. Riprova");

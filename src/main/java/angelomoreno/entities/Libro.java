@@ -21,6 +21,10 @@ public class Libro extends Catalogo{
         return this.isbn;
     }
 
+    public int getAnno() {
+        return this.annoPubblicazione;
+    }
+
     public String getAutore() {
         return autore;
     }

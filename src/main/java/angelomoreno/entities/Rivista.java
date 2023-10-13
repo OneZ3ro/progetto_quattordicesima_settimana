@@ -18,6 +18,10 @@ public class Rivista extends Catalogo{
     public BigInteger getIsbn() {
         return this.isbn;
     }
+
+    public int getAnno() {
+        return this.annoPubblicazione;
+    }
     @Override
     public String toString() {
         return "Rivista{" +
