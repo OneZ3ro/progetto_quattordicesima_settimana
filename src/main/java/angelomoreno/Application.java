@@ -127,6 +127,9 @@ public class Application {
                         archivio1.getLibri().stream().filter(libro1 -> libro1.getAnno() == searchLibroAnno).collect(Collectors.groupingBy(libro1 -> libro1.getAnno())).forEach(((anno, libros) -> System.out.println("I libri che corrispondono all'anno "+ anno + " sono: " + libros)));
                         break;
                     case 8:
+                        System.out.println("\nInserisci l'anno della rivista che vuoi cercare");
+                        int searchRivistaAnno = Integer.parseInt(input.nextLine());
+                        archivio1.getRiviste().stream().filter(libro1 -> libro1.getAnno() == searchRivistaAnno).collect(Collectors.groupingBy(libro1 -> libro1.getAnno())).forEach(((anno, libros) -> System.out.println("Le riviste che corrispondono all'anno "+ anno + " sono: " + libros)));
                         break;
                     case 9:
                         System.out.println("\nHai scelto 9!!");
