@@ -40,7 +40,7 @@ public class Libro extends Catalogo{
                 ", titolo='" + titolo + '\'' +
                 ", annoPubblicazione=" + annoPubblicazione +
                 ", numeroPagine=" + numeroPagine +
-                "autore='" + autore + '\'' +
+                ", autore='" + autore + '\'' +
                 ", genere='" + genere + '\'' +
                 '}';
     }

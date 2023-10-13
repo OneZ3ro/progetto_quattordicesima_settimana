@@ -29,7 +29,7 @@ public class Rivista extends Catalogo{
                 ", titolo='" + titolo + '\'' +
                 ", annoPubblicazione=" + annoPubblicazione +
                 ", numeroPagine=" + numeroPagine +
-                "periodicity=" + periodicity +
+                ", periodicity=" + periodicity +
                 '}';
     }
 }

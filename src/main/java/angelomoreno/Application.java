@@ -132,7 +132,9 @@ public class Application {
                         archivio1.getRiviste().stream().filter(libro1 -> libro1.getAnno() == searchRivistaAnno).collect(Collectors.groupingBy(libro1 -> libro1.getAnno())).forEach(((anno, libros) -> System.out.println("Le riviste che corrispondono all'anno "+ anno + " sono: " + libros)));
                         break;
                     case 9:
-                        System.out.println("\nHai scelto 9!!");
+                        System.out.println("\nInserisci l'autore del libro che vuoi cercare");
+                        String searchLibroAutore = input.nextLine();
+                        archivio1.getLibri().stream().filter(libro1 -> libro1.getAutore().equals(searchLibroAutore)).collect(Collectors.groupingBy(libro1 -> libro1.getAutore())).forEach(((autore, libros) -> System.out.println("I libri che corrispondono all'autore "+ autore + " sono: " + libros)));
                         break;
                     case 10:
                         System.out.println("\nHai scelto 10!!");
@@ -162,7 +164,7 @@ public class Application {
             return new Libro(faker.book().title(), rndm.nextInt(1800, 2024), rndm.nextLong(10, 1200), faker.book().author(), faker.book().genre());
         };
         Random rndm = new Random();
-        for (int i = 0; i < rndm.nextInt(10, 101); i++) {
+        for (int i = 0; i < rndm.nextInt(100, 251); i++) {
             libri.add(supplierLibro.get());
         }
         return libri;
@@ -183,7 +185,7 @@ public class Application {
             }
         };
         Random rndm = new Random();
-        for (int i = 0; i < rndm.nextInt(10, 101); i++) {
+        for (int i = 0; i < rndm.nextInt(100, 251); i++) {
             riviste.add(supplierRivista.get());
         }
         return riviste;
