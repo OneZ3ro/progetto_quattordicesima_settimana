@@ -29,4 +29,19 @@ public abstract class Catalogo {
         this.numeroPagine = numeroPagine;
     }
 
+    public BigInteger getIsbn() {
+        return isbn;
+    }
+
+    public String getTitolo() {
+        return titolo;
+    }
+
+    public int getAnnoPubblicazione() {
+        return annoPubblicazione;
+    }
+
+    public long getNumeroPagine() {
+        return numeroPagine;
+    }
 }
